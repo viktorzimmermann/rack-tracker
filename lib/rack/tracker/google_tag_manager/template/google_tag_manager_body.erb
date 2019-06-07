@@ -1,7 +1,9 @@
 <% if container %>
   <% if options[:turbolinks] && events.any? %>
     <script>  
-      dataLayer.push(<%= events.map(&:write).join(', ') %>);
+      document.addEventListener('turbolinks:load', function(event) {
+        dataLayer.push(<%= events.map(&:write).join(', ') %>);
+      });
     </script>
   <% end %>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= container %>"
