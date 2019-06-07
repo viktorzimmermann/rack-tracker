@@ -1,8 +1,9 @@
-<% if options[:turbolinks] && events.any? %>
-  dataLayer.push(<%= events.map(&:write).join(', ') %>);
-<% end %>
-
 <% if container %>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= container %>"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <% if options[:turbolinks] && events.any? %>
+    <script>  
+      dataLayer.push(<%= events.map(&:write).join(', ') %>);
+    </script>
+  <% end %>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= container %>"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <% end %>
